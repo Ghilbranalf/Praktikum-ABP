@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gabungan Contoh Javascript & jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+        .box {
+            background: #98bf21;
+            height: 100px;
+            width: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <p id="hello"></p>
+    
+    <pre id="variabel"></pre>
+    
+    <pre id="array"></pre>
+    
+    <pre id="kontrol"></pre>
+    
+    <pre id="object"></pre>
+    
+    <pre id="prototype"></pre>
+    
+    <pre id="fungsi1"></pre>
+    
+    <pre id="fungsi2"></pre>
+    
+    <pre id="fungsi3"></pre>
+    
+    <p id="paragraf">Paragraf ini bisa disembunyikan.</p>
+    <button id="hide">Hide</button>
+    <button id="show">Show</button>
+    
+    <br><br>
+    <button id="animasi">Start Animation</button>
+    <div class="box"></div>
+
+    <script>
+        $(document).ready(function(){
+            // BAGIAN HELLO WORLD
+            $("#hello").text("Hello World");
+            
+            // BAGIAN HIDE SHOW
+            $("#hide").click(function(){
+                $("#paragraf").hide();
+            });
+            
+            $("#show").click(function(){
+                $("#paragraf").show();
+            });
+            
+            // BAGIAN ANIMASI
+            $("#animasi").click(function(){
+                $(".box").animate({
+                    height: 'toggle'
+                });
+            });
+        });
+
+        // BAGIAN VARIABEL
+        var a;
+        var nama = "Budi";
+        nama = "Anton";
+        nama = 1;
+        document.getElementById("variabel").textContent = 
+            "a = " + a + "\n" +
+            "nama = " + nama;
+
+        // BAGIAN ARRAY
+        var data = ["satu", 2, true];
+        var arr2 = [["satu", "dua"], ["tiga", "empat"]];
+        document.getElementById("array").textContent = 
+            "data = " + JSON.stringify(data) + "\n" +
+            "arr2 = " + JSON.stringify(arr2) + "\n" +
+            "data[2] = " + data[2] + "\n" +
+            "arr2[0][1] = " + arr2[0][1];
+
+        // BAGIAN PENGENDALIAN STRUKTUR
+        var pendidikan = "S2";
+        var gelar;
+        if (pendidikan === "S1") {
+            gelar = "Sarjana";
+        } else if (pendidikan === "S2") {
+            gelar = "Master";
+        } else {
+            gelar = "Tidak diketahui";
+        }
+        var hasil = "";
+        for (var i = 0; i < 5; i++) {
+            hasil += "Perulangan " + i + "\n";
+        }
+        document.getElementById("kontrol").textContent = 
+            "gelar = " + gelar + "\n\n" + hasil;
+
+        // BAGIAN OBJECT
+        var mobil = {
+            "warna-badan": "merah",
+            "nomor-polisi": "BK1234AB"
+        };
+        mobil["jumlah-roda"] = 4;
+        mobil.bahan_bakar = "Bensin";
+        document.getElementById("object").textContent = 
+            JSON.stringify(mobil, null, 2);
+
+        // BAGIAN PROTOTYPE
+        var mobilPrototype = {
+            nama: "Mobil",
+            jumlahBan: 4
+        };
+        var truk = Object.create(mobilPrototype);
+        document.getElementById("prototype").textContent = 
+            "truk.nama = " + truk.nama + "\n" +
+            "truk.jumlahBan = " + truk.jumlahBan;
+
+        // BAGIAN FUNCTION DECLARATION
+        function tambahDeklarasi(a, b) {
+            return a + b;
+        }
+        document.getElementById("fungsi1").textContent = 
+            "tambahDeklarasi(3,5) = " + tambahDeklarasi(3,5);
+
+        // BAGIAN FUNCTION EXPRESSION
+        var tambahEkspresi = function(a, b) {
+            return a + b;
+        };
+        document.getElementById("fungsi2").textContent = 
+            "tambahEkspresi(3,5) = " + tambahEkspresi(3,5);
+
+        // BAGIAN PEMANGGILAN FUNGSI
+        var tambah = function(a, b) {
+            return a + b;
+        };
+        var simpan = tambah(3,5);
+        document.getElementById("fungsi3").textContent = 
+            "tambah(3,5) = " + tambah(3,5) + "\n" +
+            "tambah(simpan, 2) = " + tambah(simpan, 2);
+    </script>
+</body>
+</html>
