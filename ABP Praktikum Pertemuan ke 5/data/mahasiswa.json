@@ -1,0 +1,90 @@
+[
+  {
+    "id": "9da299f2-965f-4f37-9146-7cb738fa7993",
+    "nim": "2021001",
+    "nama": "Andi Pratama",
+    "jurusan": "Teknik Informatika",
+    "semester": 6,
+    "ipk": 3.75,
+    "status": "Aktif",
+    "email": "andi.pratama@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.300Z"
+  },
+  {
+    "id": "95f0004a-7848-4362-8825-d051b6dedd59",
+    "nim": "2021002",
+    "nama": "Budi Santoso",
+    "jurusan": "Sistem Informasi",
+    "semester": 4,
+    "ipk": 3.5,
+    "status": "Aktif",
+    "email": "budi.santoso@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  },
+  {
+    "id": "e6786210-acda-4ca3-885d-42b138ffc9f7",
+    "nim": "2021003",
+    "nama": "Citra Dewi",
+    "jurusan": "Teknik Informatika",
+    "semester": 6,
+    "ipk": 3.9,
+    "status": "Aktif",
+    "email": "citra.dewi@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  },
+  {
+    "id": "2a8d892f-a646-46b6-a26b-6422e852ecac",
+    "nim": "2020001",
+    "nama": "Dian Rahayu",
+    "jurusan": "Manajemen Informatika",
+    "semester": 8,
+    "ipk": 3.6,
+    "status": "Aktif",
+    "email": "dian.rahayu@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  },
+  {
+    "id": "5e3ea206-1e53-4f69-ab80-13cf0c5cb559",
+    "nim": "2022001",
+    "nama": "Eko Saputra",
+    "jurusan": "Sistem Informasi",
+    "semester": 2,
+    "ipk": 3.2,
+    "status": "Aktif",
+    "email": "eko.saputra@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  },
+  {
+    "id": "b243583a-7797-41a6-ab10-fcad2d4976f2",
+    "nim": "2021004",
+    "nama": "Fitri Handayani",
+    "jurusan": "Teknik Informatika",
+    "semester": 6,
+    "ipk": 3.85,
+    "status": "Cuti",
+    "email": "fitri.handayani@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  },
+  {
+    "id": "96600ca1-c5a1-45c3-80fd-8378ace9b13b",
+    "nim": "2020002",
+    "nama": "Guntur Wibowo",
+    "jurusan": "Manajemen Informatika",
+    "semester": 8,
+    "ipk": 2.9,
+    "status": "Aktif",
+    "email": "guntur.wibowo@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  },
+  {
+    "id": "621c4548-92c2-4d99-9353-ef817d07f949",
+    "nim": "2022002",
+    "nama": "Hana Sari",
+    "jurusan": "Teknik Informatika",
+    "semester": 2,
+    "ipk": 3.7,
+    "status": "Aktif",
+    "email": "hana.sari@student.ac.id",
+    "createdAt": "2026-04-05T18:22:34.301Z"
+  }
+]

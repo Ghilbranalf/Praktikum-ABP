@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Mahasiswa | SiMAHA</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🎓</div>
+    <h2>SiMAHA</h2>
+    <p>Sistem Manajemen Mahasiswa</p>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Menu Utama</div>
+    <a href="/" class="sidebar-link"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+    <a href="/data" class="sidebar-link"><i class="bi bi-table"></i> Data Mahasiswa</a>
+    <a href="/tambah" class="sidebar-link"><i class="bi bi-person-plus-fill"></i> Tambah Mahasiswa</a>
+    <div class="nav-section-label mt-2">Laporan</div>
+    <a href="/statistik" class="sidebar-link"><i class="bi bi-bar-chart-fill"></i> Statistik & Grafik</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div>© 2024 SiMAHA v1.0</div>
+    <div>Tugas Praktikum Web</div>
+  </div>
+</aside>
+<div class="sidebar-overlay"></div>
+
+<!-- MAIN -->
+<div class="main-wrapper">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-menu-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item active">Data Mahasiswa</li>
+          </ol>
+        </nav>
+        <div class="topbar-title">Data Mahasiswa</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <a href="/tambah" class="btn btn-primary-custom btn-sm d-none d-md-flex">
+        <i class="bi bi-plus-lg"></i> Tambah Baru
+      </a>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <!-- FILTER BAR -->
+    <div class="panel mb-4 animate-in">
+      <div class="panel-body py-3">
+        <div class="row g-2 align-items-center">
+          <div class="col-12 col-sm-6 col-md-3">
+            <select class="form-select form-select-sm" id="filterJurusan">
+              <option value="">Semua Jurusan</option>
+              <option value="Teknik Informatika">Teknik Informatika</option>
+              <option value="Sistem Informasi">Sistem Informasi</option>
+              <option value="Manajemen Informatika">Manajemen Informatika</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <select class="form-select form-select-sm" id="filterStatus">
+              <option value="">Semua Status</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Cuti">Cuti</option>
+              <option value="Lulus">Lulus</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <select class="form-select form-select-sm" id="filterSemester">
+              <option value="">Semua Semester</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-6 col-md-3 text-end">
+            <button id="btnResetFilter" class="btn btn-sm" style="background:var(--bg);border:1.5px solid var(--border);font-size:13px;font-weight:600;border-radius:8px">
+              <i class="bi bi-x-circle"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA TABLE PANEL -->
+    <div class="panel animate-in delay-1">
+      <div class="panel-header">
+        <span class="panel-title"><i class="bi bi-people-fill text-primary"></i> Daftar Mahasiswa</span>
+        <div class="d-flex gap-2 align-items-center">
+          <span class="badge bg-primary rounded-pill" id="totalCount" style="font-size:12px">0 data</span>
+          <a href="/tambah" class="btn btn-primary-custom btn-sm d-md-none">
+            <i class="bi bi-plus-lg"></i>
+          </a>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table id="mahasiswaTable" class="table table-custom w-100">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Mahasiswa</th>
+              <th>NIM</th>
+              <th>Jurusan</th>
+              <th>Sem</th>
+              <th>IPK</th>
+              <th>Status</th>
+              <th>Terdaftar</th>
+              <th class="text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL: DETAIL VIEW -->
+<div class="modal fade" id="detailModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background:linear-gradient(135deg,#1a56db,#4f46e5);color:white">
+        <h5 class="modal-title text-white"><i class="bi bi-person-circle me-2"></i>Detail Mahasiswa</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4" id="detailBody">
+        <div class="text-center py-3"><div class="spinner-border text-primary"></div></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-bs-dismiss="modal" style="background:var(--bg);border:1.5px solid var(--border);font-weight:600">Tutup</button>
+        <button class="btn btn-primary-custom" id="btnGoEdit"><i class="bi bi-pencil"></i> Edit Data</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: EDIT -->
+<div class="modal fade" id="editModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="bi bi-pencil-square me-2 text-primary"></i>Edit Data Mahasiswa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <input type="hidden" id="editId">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">NIM <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="editNim" placeholder="Contoh: 2021001">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="editNama" placeholder="Nama lengkap mahasiswa">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Email <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="editEmail" placeholder="email@student.ac.id">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Jurusan <span class="text-danger">*</span></label>
+            <select class="form-select" id="editJurusan">
+              <option value="Teknik Informatika">Teknik Informatika</option>
+              <option value="Sistem Informasi">Sistem Informasi</option>
+              <option value="Manajemen Informatika">Manajemen Informatika</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Semester <span class="text-danger">*</span></label>
+            <select class="form-select" id="editSemester">
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">IPK <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="editIPK" min="0" max="4" step="0.01" placeholder="0.00 - 4.00">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Status <span class="text-danger">*</span></label>
+            <select class="form-select" id="editStatus">
+              <option value="Aktif">Aktif</option>
+              <option value="Cuti">Cuti</option>
+              <option value="Lulus">Lulus</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-bs-dismiss="modal" style="background:var(--bg);border:1.5px solid var(--border);font-weight:600">Batal</button>
+        <button class="btn btn-primary-custom" id="btnSaveEdit"><i class="bi bi-save"></i> Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CONFIRM DELETE -->
+<div class="modal fade" id="confirmModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-body text-center p-4">
+        <div style="font-size:52px;margin-bottom:12px">🗑️</div>
+        <h5 style="font-weight:700;margin-bottom:8px">Hapus Data?</h5>
+        <p style="font-size:14px;color:var(--gray);margin-bottom:0">
+          Data mahasiswa <strong class="confirm-name text-dark"></strong> akan dihapus secara permanen.
+        </p>
+      </div>
+      <div class="modal-footer border-0 justify-content-center gap-2 pt-0">
+        <button class="btn" data-bs-dismiss="modal" style="background:var(--bg);border:1.5px solid var(--border);font-weight:600;min-width:90px">Batal</button>
+        <button class="btn btn-danger-custom" id="btnConfirmDelete" style="min-width:90px"><i class="bi bi-trash"></i> Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/data.js"></script>
+</body>
+</html>
