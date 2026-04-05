@@ -2,9 +2,9 @@
 
 ## 👤 Identitas
 
-* Nama: Ghilbran Me
-* NIM: (Isi NIM kamu)
-* Mata Kuliah: (Isi Mata Kuliah)
+* Nama: Ghilbran Alfaries Pryma
+* NIM: 2311102267
+* Mata Kuliah: Praktikum ABP pertemuan ke 5
 
 ---
 
