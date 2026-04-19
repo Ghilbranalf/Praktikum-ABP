@@ -1,0 +1,50 @@
+[
+    {
+        "nama": "Andi Pratama",
+        "nim": "2021001001",
+        "kelas": "TI-3A",
+        "prodi": "Teknik Informatika",
+        "ipk": "3.85",
+        "angkatan": "2021"
+    },
+    {
+        "nama": "Siti Rahayu",
+        "nim": "2021001002",
+        "kelas": "TI-3A",
+        "prodi": "Teknik Informatika",
+        "ipk": "3.92",
+        "angkatan": "2021"
+    },
+    {
+        "nama": "Budi Santoso",
+        "nim": "2022002001",
+        "kelas": "SI-2B",
+        "prodi": "Sistem Informasi",
+        "ipk": "3.67",
+        "angkatan": "2022"
+    },
+    {
+        "nama": "Dewi Lestari",
+        "nim": "2022002002",
+        "kelas": "SI-2B",
+        "prodi": "Sistem Informasi",
+        "ipk": "3.78",
+        "angkatan": "2022"
+    },
+    {
+        "nama": "Rizky Firmansyah",
+        "nim": "2023003001",
+        "kelas": "TI-1C",
+        "prodi": "Teknik Informatika",
+        "ipk": "3.55",
+        "angkatan": "2023"
+    },
+    {
+        "nama": "Nur Azizah",
+        "nim": "2023003002",
+        "kelas": "MI-1A",
+        "prodi": "Manajemen Informatika",
+        "ipk": "3.88",
+        "angkatan": "2023"
+    }
+]
